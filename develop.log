@@ -1,0 +1,3 @@
+2
+(1) [30/08/2014 23:08.07] Need to add a display_log that displays the first 10 logs similar to 'git log' and then asks the user if they would like to load more. When we get to the last log display a count=x displaying the number of logs in the file
+(2) [30/08/2014 23:59.15] Need to add a find_log that searches for logs. This could be via ID, which is preffered, or via date possibly, which would be harder and maybe better off been a 1.0.1 patch
