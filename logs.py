@@ -1,6 +1,7 @@
 import os
 import sys
 import datetime
+from datetime import date
 import argparse
 
 class logs:
@@ -39,6 +40,8 @@ class logs:
 		parser.add_argument('-l', '--log', help = "")
 		parser.add_argument('-i', '--id', help="")
 		parser.add_argument('-d', '--date', help="")
+		parser.add_argument('-df', '--date-from', help="")
+		parser.add_argument('-dt', '--date-to', help="")
 
 		#get arguments passed in
 		args = parser.parse_args()
@@ -47,6 +50,8 @@ class logs:
 		self.log = args.log
 		self.id = args.id
 		self.date = args.date
+		self.date_from = args.date_from
+		self.date_to = args.date_to
 		
 
 	def getAction(self):
@@ -63,6 +68,8 @@ class logs:
 			elif self.date != None and self.id == None:
 				print "find by date"
 				self.find_by_date()
+			elif self.date == None and self.id == None and self.date_from != None and self.date_to != None:
+				self.find_between_dates()
 		elif self.command == "delete":
 			self.delete()
 
@@ -193,6 +200,48 @@ class logs:
 						print date
 						print log_mes
 						print '\n'
+	def find_between_dates(self):
+		lines = []
+		found = False
+		empty = True
+		with open(self.file, 'r')as log_file:
+			lines = log_file.readlines()
+			for line in lines:
+				if line[0] == '(':
+					pos = 1
+					log_num = ''
+					date = ''
+					while(line[pos] != ')'):
+						log_num += line[pos]
+						pos += 1
+					#get length of number here
+					pos += 3
+					while(line[pos] != ']'):
+						date += line[pos]
+						pos += 1
+
+					date_from_no_time = self.date_from.split("/")
+					date_to_no_time = self.date_to.split("/")
+					date_no_time = date.split(" ")[0].split("/")
+					
+					temp_date_from =(date_from_no_time[2], date_from_no_time[1], date_from_no_time[0])
+					temp_date_to = (date_to_no_time[2], date_to_no_time[1], date_to_no_time[0])
+					temp_date = (date_no_time[2], date_no_time[1], date_no_time[0])
+
+					if temp_date_from <= temp_date <= temp_date_to:
+						ident = "ID = " + log_num
+						date = "Date = " + date
+						log_mes = "Log = "
+						pos += 2
+						mes_len = len(line.rstrip())
+						while(pos < mes_len):
+							log_mes += line[pos]
+							pos +=1
+						print ident
+						print date
+						print log_mes
+						print '\n'
+
 	def delete(self):
 		lines = []
 		found = False 
