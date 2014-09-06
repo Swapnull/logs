@@ -157,5 +157,39 @@ class logs:
 						print '\n'
 
 	def delete(self):
-		print "deleting"
+		lines = []
+		found = False 
+		empty = True
+		with open(str(self.file), 'r') as log_file:
+			lines = log_file.readlines()
+		with open(str(self.file), 'w') as log_file:
+			log_file.write(lines[0])
+			for line in lines:
+				if line[0] == '(':
+					x = 1
+					log_num = ""
+					while(line[x] != ')'):
+						log_num += line[x]
+						x +=1
+					if log_num == self.id:
+						print "Log has been found.\n"
+						found = True
+					else:
+						log_file.write(line)
+						empty = False 
+			if found == False:
+				print "This Log could not be found."
+				empty = False
+			if empty == True:
+				valid = False
+				while(valid == False):
+					empty_choice = raw_input("This file is empty, would you like to delete it? (Y/N)").lower()
+					if empty_choice == 'y':
+						os.remove(self.file)
+						print "file deleted"
+						valid = True
+					elif empty_choice == 'n':
+						valid = True
+					else:
+						print "Not a valid choice! Try again"
 logs()
