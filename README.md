@@ -24,7 +24,8 @@ Adds a new log by appending it to the end of the specified file. The log must be
 ######Format
 	logs insert -f [name] -l "[log]"
 	logs insert --file [name] --log "[log]"
-where [name] is the tile of the file
+where [name] is the title of the file
+
 where [log] is the log to be added
 ######Examples
 
@@ -36,7 +37,7 @@ Display will print the last 10 logs inside of a file. If you have more than 10 l
 ######Format
 	logs display -f [name]
 	logs display --file [name]
-where [name] is the tile of the file
+where [name] is the title of the file
 ######Examples
 
 	logs display -f project.log
@@ -48,6 +49,7 @@ Find takes in a log id and then displays the log with that id. _There is also pl
 	logs find -f [name] -i [log_id]
 	logs find --file [name] --id [log_id]
 where [name] is the title of the file
+
 where [log_id] is the integer log id 
 ######Examples
 
@@ -60,6 +62,7 @@ Delete takes in a log id and removes the log from the file. Once this has been d
 	logs delete -f [name] -i [log_id]
 	logs delete --file [name] --id [log_id]
 where [name] is the title of the file
+
 where [log_id] is the integer log id
 ######Examples
 
