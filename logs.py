@@ -31,18 +31,20 @@ class logs:
 	def parserSetup(self):
 		#initialise parser
 		parser = argparse.ArgumentParser(description= "Logs is a little program that allows you to add a development log to your projects.",
-			usage = "logs <command> --file [--log] [--help]")
+			usage = "logs <command> --file [--log] [--id] [--help]")
 		
 		#add allowed arguments
 		parser.add_argument("command")
 		parser.add_argument('-f', '--file', help = "", required=True)
 		parser.add_argument('-l', '--log', help = "")
+		parser.add_argument('-i', '--id', help="")
 
 		#get arguments passed in
 		args = parser.parse_args()
 		self.command = args.command
 		self.file = args.file
 		self.log = args.log
+		self.id = args.id
 		
 
 	def getAction(self):
@@ -123,7 +125,36 @@ class logs:
 							print "Not a valid choice! Try again"
 
 	def find(self):
-		print "finding"
+		lines = []
+		found = False
+		empty = True
+		with open(str(self.file),'r')as log_file:
+			lines = log_file.readlines()
+			for line in lines:
+				if line[0] == '(':
+					pos= 1
+					log_num= ''
+					while(line[pos] != ')'):
+						log_num += line[pos]
+						pos += 1
+					if log_num == self.id:
+						print "here"
+						ident = "ID = " + self.id
+						date = "Date = "
+						log_mes = "Log = "
+						pos +=3
+						while(line[pos] != ']'):
+							date += line[pos]
+							pos += 1
+						pos += 2
+						mes_len = len(line.rstrip())
+						while(pos < mes_len):
+							log_mes += line[pos]
+							pos += 1
+						print ident
+						print date
+						print log_mes
+						print '\n'
 
 	def delete(self):
 		print "deleting"
