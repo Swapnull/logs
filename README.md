@@ -44,7 +44,10 @@ where [name] is the title of the file
 	logs diaplay --file develop.log
 
 ###find
-Find takes in a log id and then displays the log with that id. _There is also plans to do this search by date_
+There are multiple ways of searching the logs.
+
+####find by id 
+Find by id takes in a log id and then displays the log with that id. This should only ever display one result
 ######Format
 	logs find -f [name] -i [log_id]
 	logs find --file [name] --id [log_id]
@@ -55,6 +58,19 @@ where [log_id] is the integer log id
 
 	logs find -f project.log -i 14
 	logs find --file develop.log --id 194
+
+####find by date
+Find by date takes in a date and then displays all the logs that were made on that date. The date must be put in with the correct format otherwise it will not work.
+######Format
+	logs find -f [name] -d [DD/MM/YYYY]
+	logs find --file [name] --date [DD/MM/YYYY]
+where [name] is the title of the file
+
+where [date] is the date in DD/MM/YYYY format
+######Examples
+
+	logs find -f project.log -d 01/01/2000
+	logs find --file develop.log --date 06/09/2014
 
 ###delete
 Delete takes in a log id and removes the log from the file. Once this has been done it is irreverable so use with care.

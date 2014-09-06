@@ -38,6 +38,7 @@ class logs:
 		parser.add_argument('-f', '--file', help = "", required=True)
 		parser.add_argument('-l', '--log', help = "")
 		parser.add_argument('-i', '--id', help="")
+		parser.add_argument('-d', '--date', help="")
 
 		#get arguments passed in
 		args = parser.parse_args()
@@ -45,6 +46,7 @@ class logs:
 		self.file = args.file
 		self.log = args.log
 		self.id = args.id
+		self.date = args.date
 		
 
 	def getAction(self):
@@ -55,7 +57,12 @@ class logs:
 		elif self.command == "display":
 			self.display()
 		elif self.command == "find":
-			self.find()
+			if self.date == None and self.id != None:
+				print "find by id"
+				self.find_by_id()
+			elif self.date != None and self.id == None:
+				print "find by date"
+				self.find_by_date()
 		elif self.command == "delete":
 			self.delete()
 
@@ -124,7 +131,7 @@ class logs:
 						else:
 							print "Not a valid choice! Try again"
 
-	def find(self):
+	def find_by_id(self):
 		lines = []
 		found = False
 		empty = True
@@ -138,7 +145,6 @@ class logs:
 						log_num += line[pos]
 						pos += 1
 					if log_num == self.id:
-						print "here"
 						ident = "ID = " + self.id
 						date = "Date = "
 						log_mes = "Log = "
@@ -155,7 +161,38 @@ class logs:
 						print date
 						print log_mes
 						print '\n'
-
+	def find_by_date(self):
+		lines = []
+		found = False
+		empty = True
+		with open(self.file, 'r')as log_file:
+			lines = log_file.readlines()
+			for line in lines:
+				if line[0] == '(':
+					pos = 1
+					log_num = ''
+					date = ''
+					while(line[pos] != ')'):
+						log_num += line[pos]
+						pos += 1
+					#get length of number here
+					pos += 3
+					while(line[pos] != ']'):
+						date += line[pos]
+						pos += 1
+					if date.split(" ")[0] == self.date:
+						ident = "ID = " + log_num
+						date = "Date = " + date
+						log_mes = "Log = "
+						pos += 2
+						mes_len = len(line.rstrip())
+						while(pos < mes_len):
+							log_mes += line[pos]
+							pos +=1
+						print ident
+						print date
+						print log_mes
+						print '\n'
 	def delete(self):
 		lines = []
 		found = False 
