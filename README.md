@@ -32,7 +32,7 @@ To be able to use logs without having to type "python logs.py <command>" every t
 
 From the command line you can make a doskey by running:
 	
-	doskey logs="python path/to/logs/logs.py"
+	doskey logs="python path/to/logs/Release/logs.py"
 
 As stated earlier, I would suggest downloading a bash terminal and then following the linux part.
 
@@ -40,7 +40,7 @@ As stated earlier, I would suggest downloading a bash terminal and then followin
 
 My preferred way with linux is to edit the file found at /etc/bash.bash_profile . Open this up in a text editor and add the line
 
-	alias logs='python /path/to/logs/logs.py'
+	alias logs='python /path/to/logs/Release/logs.py'
 
 **OSX**
 
@@ -50,7 +50,7 @@ With OSX you need to edit the bash_profile command. First of all fire up the ter
 
 Once you have this open add the line: 
 
-	alias logs='python /path/to/logs/logs.py'
+	alias logs='python /path/to/logs/Release/logs.py'
 
 ##Available Commands
 ###create
