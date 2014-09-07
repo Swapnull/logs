@@ -42,21 +42,19 @@ From the command line you can make a doskey by running:
 
 As stated earlier, I would suggest downloading a bash terminal and then following the linux part.
 
-**Linux**
+**Linux/OSX**
 
-My preferred way with linux is to edit the file found at /etc/bash.bash_profile . Open this up in a text editor and add the line
+To install the command system wide, type:
 
-	alias logs='python /path/to/logs/Release/logs.py'
+`make install`
 
-**OSX**
+and to uninstall:
 
-With OSX you need to edit the bash_profile command. First of all fire up the terminal.app and then type in:
-	
-	nano .bash_profile
+`make uninstall`
 
-Once you have this open add the line: 
+To install it somewhere other than `/usr/local/bin`, do:
 
-	alias logs='python /path/to/logs/Release/logs.py'
+`make install PREFIX=/path/to/destination`
 
 ##Available Commands
 ###create
