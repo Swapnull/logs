@@ -8,6 +8,10 @@ Logs is a little program that allows you to add a development log to your projec
 Each log file also containts the current id as the first line. Please don't change this number if you go and edit the log by opening the file, if you do then the search functions may not be fully correct.
 
 ##Installation
+The installation comes in the 3 parts outlined below. I hope to have these run from a .bat (or .sh) eventually, but for now please refer to the instructions below. 
+
+_If anybody is interested in writing the .bat/.sh files, write them and if they work I will accept a pull request_
+
 ######Get logs.py
 First of all you need to get the code from the "logs.py" file on github. The easiest way to do this, so long as you have git installed, is to clone the repository:
 	
@@ -23,7 +27,7 @@ If you do not have python 2 installed, Go to the [https://www.python.org/downloa
 ######Reference logs
 To be able to use logs without having to type "python logs.py <command>" every time then you will want to set an alias.
 
-*Windows Command Prompt*
+**Windows Command Prompt**
  _I am not 100% sure on windows but some searching brough up this_
 
 From the command line you can make a doskey by running:
@@ -32,10 +36,21 @@ From the command line you can make a doskey by running:
 
 As stated earlier, I would suggest downloading a bash terminal and then following the linux part.
 
-*Linux and OSX*
-For Linux and OSX the best way is to edit your bash_profile. 
+**Linux**
 
+My preferred way with linux is to edit the file found at /etc/bash.bash_profile . Open this up in a text editor and add the line
 
+	alias logs='python /path/to/logs/logs.py'
+
+**OSX**
+
+With OSX you need to edit the bash_profile command. First of all fire up the terminal.app and then type in:
+	
+	nano .bash_profile
+
+Once you have this open add the line: 
+
+	alias logs='python /path/to/logs/logs.py'
 
 ##Available Commands
 ###create
