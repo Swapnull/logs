@@ -7,6 +7,36 @@ Logs is a little program that allows you to add a development log to your projec
 
 Each log file also containts the current id as the first line. Please don't change this number if you go and edit the log by opening the file, if you do then the search functions may not be fully correct.
 
+##Installation
+######Get logs.py
+First of all you need to get the code from the "logs.py" file on github. The easiest way to do this, so long as you have git installed, is to clone the repository:
+	
+	$ git clone https://github.com/Swapnull/logs.git
+
+Alternatively, you could just copy the code from logs.py and put that anywhere on your system.
+
+######Install python
+Currently, you need to have python 2 (I use python 2.7) installed on your computer to use logs. This comes pre-installed on linux and OSX but not on windows.
+
+If you do not have python 2 installed, Go to the [https://www.python.org/download](https://www.python.org/download). 
+
+######Reference logs
+To be able to use logs without having to type "python logs.py <command>" every time then you will want to set an alias.
+
+*Windows Command Prompt*
+ _I am not 100% sure on windows but some searching brough up this_
+
+From the command line you can make a doskey by running:
+	
+	doskey logs="python path/to/logs/logs.py"
+
+As stated earlier, I would suggest downloading a bash terminal and then following the linux part.
+
+*Linux and OSX*
+For Linux and OSX the best way is to edit your bash_profile. 
+
+
+
 ##Available Commands
 ###create
 Creates a new log file with the name passed in. If you want the file to have an extention this will need to be passed in too.
@@ -18,7 +48,7 @@ where [file] is the title of the file.
 
 	logs create -f develop.log
 	logs create --file develop
-
+---
 ###insert
 Adds a new log by appending it to the end of the specified file. The log must be as a string using _"speech marks"_ . If the file you are trying to insert into does not yet exist then logs will ask if you want to create it. 
 ######Format
@@ -31,7 +61,7 @@ where [log] is the log to be added
 
 	logs insert -f develop -l "An exception is thrown when save is pressed"
 	logs insert -log "Switch statement not working correctly" -f project.log 
-
+---
 ###display
 Display will print the last 10 logs inside of a file. If you have more than 10 logs in a file then it will ask if you would like to load the next 10.
 ######Format
@@ -80,7 +110,7 @@ Find between dates takes in a date from and a date to string and then displays e
 	logs find --file [file] --date-from [date] --date-to [date]
 where [file] is the title of the file
 
-where [date] is the date in DD/MM/YYYY format
+where [dategit] is the date in DD/MM/YYYY format
 ######Examples
 	logs find -f project.log -df 01/01/2000 -dt 01/01/2014
 	logs find --file develop.log --date-from 01/01/2005 --date-to 31/12/2005
@@ -97,4 +127,4 @@ where [log_id] is the integer log id
 
 	logs delete -f develop -i 3
 	logs delete --file project.log --id 27
-
+---
