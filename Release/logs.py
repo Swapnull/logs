@@ -32,16 +32,16 @@ class logs:
 	def parserSetup(self):
 		#initialise parser
 		parser = argparse.ArgumentParser(description= "Logs is a little program that allows you to add a development log to your projects.",
-			usage = "logs <command> --file [--log] [--id] [--help]")
+			usage = "logs <command> --file [--help] [--log] [--id] [--date] [--date-from] [--date-to]")
 		
 		#add allowed arguments
-		parser.add_argument("command")
-		parser.add_argument('-f', '--file', help = "", required=True)
-		parser.add_argument('-l', '--log', help = "")
-		parser.add_argument('-i', '--id', help="")
-		parser.add_argument('-d', '--date', help="")
-		parser.add_argument('-df', '--date-from', help="")
-		parser.add_argument('-dt', '--date-to', help="")
+		parser.add_argument("command", help="The command which you wish to be passed in", choices=['create', 'insert', 'display', 'find', 'delete'])
+		parser.add_argument('-f','--file', help = "The path to the log file you wish to use", required=True, metavar="")
+		parser.add_argument('-l', '--log', help = "The log you wish to be added (insert Only)", metavar="")
+		parser.add_argument('-i', '--id', help="The id of the log you are looking for (find and delete Only", metavar="")
+		parser.add_argument('-d', '--date', help="The date of the log you are looking for (find Only) ", metavar="")
+		parser.add_argument('-df', '--date-from', help="The start date of the date range you are looking for (find Only)", metavar="")
+		parser.add_argument('-dt', '--date-to', help="The end date of the date range you are looking for (find Only)", metavar="")
 
 		#get arguments passed in
 		args = parser.parse_args()

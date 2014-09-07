@@ -7,6 +7,12 @@ Logs is a little program that allows you to add a development log to your projec
 
 Each log file also containts the current id as the first line. Please don't change this number if you go and edit the log by opening the file, if you do then the search functions may not be fully correct.
 
+**Windows users**
+I would highly suggest that you download a bash terminal to use logs. It is possible from the command prompt, but logs has only currently been tested with bash(and zsh) so far. Git Bash is a very nice Bash terminal for windows, and gives you the ability to get the project from github easily.
+
+####Usage Requirements
+You will need to access the command prompt to use logs. It is only very basic commans that are needed, and I give you them all below. 
+
 ##Installation
 The installation comes in the 3 parts outlined below. I hope to have these run from a .bat (or .sh) eventually, but for now please refer to the instructions below. 
 
